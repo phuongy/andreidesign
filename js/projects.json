@@ -1,0 +1,86 @@
+[
+    {
+        "title": "Bookkeeping School",
+        "subtitle": "UX | UI | Consultant",
+        "short_text": "registered training organisation",
+        "thumb": "img/bookkeeping.jpg",
+        "challenge": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "services": [
+            "Branding",
+            "Research",
+            "Planning",
+            "Website design",
+            "Prototyping",
+            "Documentation"
+        ],
+        "images": [
+            "BookkeepingSchool_01.jpg",
+            "BookkeepingSchool_02.jpg",
+            "BookkeepingSchool_03.jpg",
+            "BookkeepingSchool_04.jpg",
+            "BookkeepingSchool_05.jpg",
+            "BookkeepingSchool_06.jpg",
+            "BookkeepingSchool_07.jpg"
+        ]
+    },
+    {
+        "title": "CTV UI",
+        "subtitle": "UX | UI | Consultant",
+        "thumb": "img/ctv_ui.jpg",
+        "challenge": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "services": [
+            "Branding",
+            "Research",
+            "Planning",
+            "Website design",
+            "Prototyping",
+            "Documentation"
+        ],
+        "images": []
+    },
+    {
+        "title": "CTV UX",
+        "subtitle": "UX | UI | Consultant",
+        "thumb": "img/ctv_ux.jpg",
+        "challenge": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "services": [
+            "Branding",
+            "Research",
+            "Planning",
+            "Website design",
+            "Prototyping",
+            "Documentation"
+        ],
+        "images": []
+    },
+    {
+        "title": "Mathisi",
+        "subtitle": "UX | UI | Consultant",
+        "thumb": "img/mathisi.jpg",
+        "challenge": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "services": [
+            "Branding",
+            "Research",
+            "Planning",
+            "Website design",
+            "Prototyping",
+            "Documentation"
+        ],
+        "images": []
+    },
+    {
+        "title": "Pepsi",
+        "subtitle": "UX | UI | Consultant",
+        "thumb": "img/pepsi.jpg",
+        "challenge": "Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras mattis consectetur purus sit amet fermentum. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
+        "services": [
+            "Branding",
+            "Research",
+            "Planning",
+            "Website design",
+            "Prototyping",
+            "Documentation"
+        ],
+        "images": []
+    }
+]

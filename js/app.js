@@ -254,7 +254,6 @@ angular
 				var waypoint = new Waypoint({
 							 	element: elem,
 							 		handler: function(direction) {
-							 			console.log('triggered');
 							   			ctrl.getMoreImages()
 									},
 								 	offset: 0
@@ -294,13 +293,15 @@ angular
 				project: '='
 			},
 			link: function(scope, element, attr, ctrl) {
+				var elem =  angular.element(element)[0];
+
 				ctrl.title = scope.project.title;
 				ctrl.subtitle = scope.project.subtitle;
 				ctrl.thumb = scope.project.thumb;
 				ctrl.slug = scope.project.slug;
 
 				element.on('click', function() {
-					var elem =  angular.element(element)[0];
+					
 					var bodyRect = document.body.getBoundingClientRect();
 				    var elemRect = elem.getBoundingClientRect();
 				    var offset   = elemRect.top - bodyRect.top;
@@ -313,12 +314,26 @@ angular
 
 				});
 
+				new Waypoint({
+							 	element: elem,
+							 		handler: function(direction) {
+							 			console.log('triggered');
+							   			// ctrl.getMoreImages()
+							   			// ctrl.active = true;
+							   			element.addClass('active');
+							   			// scope.$apply();
+
+									},
+								 	offset: 'bottom-in-view'
+								});
+
 			},
 			controller: function($scope, ProjectService, $location, $timeout) {
 				this.title = '';
 				this.subtitle = '';
 				this.image = '';
 				this.slug = '';
+				this.active = false;
 
 				this.load = function(event) {
 					ProjectService.setSelectedProject($scope.project);
@@ -329,7 +344,7 @@ angular
 				}
 			},
 			controllerAs: 'teaser',
-			template:  '<article id="#{{teaser.slug}}" class="projectTeaser"> \
+			template:  '<article id="#{{teaser.slug}}" class="projectTeaser" ng-class="{\'active\':teaser.active}"> \
 						 	<header class="projectTeaser_text"> \
 					            <h3 ng-bind="teaser.title"></h3> \
 					            <h5 ng-bind="teaser.subtitle"></h5> \
@@ -501,12 +516,18 @@ angular
 		}
 
 	})
-	.controller('AppCtrl', function($scope, ProjectService) {
+	.controller('AppCtrl', function($scope, $timeout, ProjectService) {
 		var self = this;
+		this.firstLoad = true;
 		this.loading = true;
+
+		$timeout(function() {
+			self.firstLoad = false;
+		}, 1500)
 
 		$scope.$on('projects-loaded', function() {
 			self.loading = false;
+			// self.firstLoad = false;
 		});
 	});
 

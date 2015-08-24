@@ -1,0 +1,59 @@
+<modal>
+ 	<div class="projectDetail" ng-controller="ProjectDetailCtrl as project">
+		<header class="projectDetail_header">
+			<div class="inner">
+				<h1 ng-bind="project.title"></h1>
+				<h2 ng-bind="project.short_text"></h2>
+			</div>
+			<div class="projectDetail_thumb" style="background-image: url({{project.thumb}})">
+				<div class="overlay"></div>
+			</div>
+		</header>
+		<article class="projectDetail_content">
+			<div class="inner">
+				<div class="column">
+					<h4>Challenge</h4>
+					<p ng-bind="project.challenge"></p>
+				</div>
+				<div class="column">
+					<h4>Services</h4>
+					<ul>
+						<li ng-repeat="service in project.services" ng-bind="service"></li>
+					</ul>
+				</div>
+			</div>
+		</article>
+		<div class="projectDetail_images" lazy-load-images>
+			<div class="inner">
+				<img ng-repeat="image in imageStore.images" ng-src="img/{{image}}" />
+			</div>
+		</div>
+		<div class="projectDetail_navigation">
+			<div class="projectNav projectNav-left">
+				<div class="projectNav_title">
+					<h3>Previous Project</h3>
+					<h5>{{project.previous.title}}</h5>
+				</div>
+				<div class="projectNav_thumb"  style="background-image: url({{project.previous.thumb}})">
+					<div class="overlay"></div>
+				</div>
+				<a href ng-click="project.goToPrevious()">{{project.previous.title}}</a>
+			</div>
+			<div class="projectNav projectNav-right">
+				<div class="projectNav_title">
+					<h3>Next Project</h3>
+					<h5>{{project.next.title}}</h5>
+				</div>
+				<div class="projectNav_thumb"  style="background-image: url({{project.next.thumb}})">
+					<div class="overlay"></div>
+				</div>
+				<a href ng-click="project.goToNext()">{{project.next.title}}</a>
+			</div>
+		</div>
+	</div>
+	<footer class="page_footer">
+		<div class="inner">
+		    <a href="#body-top" back-to-top>Back to top</a>
+	    </div>
+	</footer>
+</modal>

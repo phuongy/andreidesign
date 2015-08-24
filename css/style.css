@@ -27,7 +27,7 @@
 /* base */
 
 body {
-	background: #000;
+	background: #1A1E24;
 	box-sizing: border-box;
 	color: #fff;
 	font-family: 'museo300', Verdana, sans-serif;
@@ -371,6 +371,7 @@ ul.inline {
 			}
 
 		.socialLinks a {
+			background: #1A1E24;
 			display: inline-block;
 			border-radius: 50%;
 			height: 40px;
@@ -410,6 +411,10 @@ ul.inline {
 				stroke: #FFFFFF;
 			}
 
+		.socialLinks svg circle {
+			fill: transparent;
+		}
+
 	.page_header.sticky .socialLinks {
 		display: none;
 	}
@@ -436,20 +441,24 @@ ul.inline {
 		}
 
 .page_footer {
-	padding-bottom: 60px;
+	padding: 60px 0;
 	text-align: center;
 }
 
 	@media (min-width: 600px) {
 		.page_footer {
-			padding-bottom: 80px;
+			padding: 80px 0;
 		}
 	}
 
 	@media (min-width: 1366px) {
 		.page_footer {
-			padding-bottom: 100px;
+			padding: 100px 0;
 		}
+	}
+
+	body.loading .page_footer {
+		display: none;
 	}
 
 	.page_footer a {
@@ -479,6 +488,22 @@ ul.inline {
 			}
 		}
 
+.overlay {
+	background-image: 
+		linear-gradient(
+			rgba(26,30,36,0),
+			rgba(26,30,36,0.8) 80%,
+			rgba(26,30,36,1) 100%
+		);
+	height: 100%;
+	left: 0;
+	opacity: 1;
+	position: absolute;
+	top: 0;
+	transition-duration: 0.3s;
+	width: 100%;
+	z-index: 1;
+}
 /* project teaser */
 
 .projectTeaser {
@@ -551,25 +576,14 @@ ul.inline {
 		}
 
 		.projectTeaser_thumb .overlay {
-			background-image: 
-				linear-gradient(
-					rgba(26,30,36,0),
-					rgba(26,30,36,0.8) 80%,
-					rgba(26,30,36,1) 100%
-				);
-			height: 100%;
-			left: 0;
-			opacity: 1;
-			position: absolute;
-			top: 0;
 			transition-duration: 0.3s;
-			width: 100%;
-			z-index: 1;
 		}
 
 		.projectTeaser:hover  .projectTeaser_thumb .overlay {
 			opacity: 0.5;
 		}
+
+
 
 /* project detail */
 
@@ -650,6 +664,7 @@ ul.inline {
 		background-size: cover;
 		height: 100%;
 		left: 0;
+		opacity: 0.5;
 		position: absolute;
 		top: 0;
 		transition-duration: 0.5s;
@@ -658,22 +673,9 @@ ul.inline {
 		z-index: 0;
 	}
 
-		.projectDetail_thumb .overlay {
-			background-image: 
-				linear-gradient(
-					rgba(26,30,36,0),
-					rgba(26,30,36,0.8) 80%,
-					rgba(26,30,36,1) 100%
-				);
-			height: 100%;
-			left: 0;
-			opacity: 1;
-			position: absolute;
-			top: 0;
-			transition-duration: 0.3s;
-			width: 100%;
-			z-index: 1;
-		}
+	.modal.open.loaded .projectDetail_thumb {
+		opacity: 0.5;
+	}
 
 	.projectDetail_content {
 		padding: 20px 0 0;
@@ -766,28 +768,120 @@ ul.inline {
 			}
 		}
 
+	.projectDetail_navigation {
+		display: none;
+		position: relative;
+	}
+
+		@media (min-width: 600px) {
+			.modal.open .projectDetail_navigation {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+			}
+		}
+		
+		.projectNav {
+			flex: 0 0 50%;
+			height: 300px;
+			position: relative;
+		}
+
+		.projectNav_title {
+			position: absolute;
+			z-index: 1;
+		}
+
+		.projectNav-left {
+			padding: 40px 0 0 40px;
+			text-align: left;
+		}
+
+			.projectNav-left .projectNav_title {
+				left: 40px;
+			}
+
+			.projectNav-left h3 {
+				background: url(../img/arrow-left.svg) no-repeat 0 3px;
+				padding-left: 25px;
+			}
+
+			.projectNav-left h5 {
+				padding-left: 26px;
+			}
+
+		.projectNav-right {
+			padding: 40px 40px 0 0;
+			text-align: right;
+		}
+
+			.projectNav-right .projectNav_title {
+				right: 40px;
+			}
+
+			.projectNav-right h3 {
+				background: url(../img/arrow-right.svg) no-repeat right 3px;
+				padding-right: 25px;
+			}
+
+			.projectNav-right h5 {
+				padding-right: 26px;
+			}
+
+		.projectNav a {
+			display: block;
+			height: 100%;
+			left: 0;
+			overflow: hidden;
+			position: absolute;
+			text-align: left;
+			text-indent: -100%;
+			top: 0;
+			white-space: nowrap;
+			width: 100%;
+		}
+
+
+		.projectNav_thumb {
+			background-size: cover;
+			height: 100%;
+			left: 0;
+			position: absolute;
+			top: 0;
+			width: 100%;
+			z-index: 0;;
+		}
+
+		.projectNav_thumb .overlay {
+			background-image: 
+				linear-gradient(
+					to top,
+					rgba(26,30,36,0),
+					rgba(26,30,36,0.8) 80%,
+					rgba(26,30,36,1) 100%
+				);
+		}
+
+
+
 /* modal */
 
 body.modal-open {
 	overflow: hidden;
-	/*padding-right: 5px;*/
 	transition-delay: 0.5s;
 }
 
 .modal {
-	bottom: 0px;
 	left: 0;
-	height: 100vh;
 	max-height: 0;
 	margin: 0 auto;
-	/*overflow: hidden;*/
 	opacity: 0;
-	position: fixed;
+	position: relative;
 	right: 0;
 	top: 0;
 	transition-delay: 0.2s;
-	transition-property: background;
-	width: 100vw;
+	transition-property: background transform;
+	transform: scale(0.95) translate(0,-10px);
 	z-index: 10;
 }
 
@@ -800,7 +894,7 @@ body.modal-open {
 	.modal .modalContainer,
 	.modal .projectDetail,
 	.modal .projectDetail_header * {
-		display: block;
+		/*display: block;*/
 	}
 
 	.modal .projectDetail_header .inner,
@@ -810,11 +904,9 @@ body.modal-open {
 
 	.modalContainer {
 		background: rgba(0,0,0,0);
-		/*overflow: hidden;*/
 	}
 
 	.modal.opening {
-		/*background: rgba(20,20,20,1);*/
 		background: rgba(0,0,0,0);
 		left: 0;
 		max-height: none;
@@ -824,19 +916,18 @@ body.modal-open {
 	}
 
 		.modal.opening .modalContainer {
-			background: rgba(0,0,0,1);
+			background: #1A1E24;
 			margin: 0 auto;
 			max-height: 460px;
 			max-width: 100vw;
 			opacity: 0;
-			overflow-y: scroll;
 		}
 
 
 	.modal.open {
-		/*background: rgba(0,0,0,1);*/
 		opacity: 1;
 		transition-duration: 0.1s;
+		transform: scale(1) translate(0,0) !important;
 	}
 
 		.modal.open * {
@@ -844,11 +935,9 @@ body.modal-open {
 		}
 
 		.modal.open .modalContainer {			
-			height: 100vh;
-			max-height: 100vw;
+			height: auto;
+			max-height: none;
 			opacity: 1;
-			/*overflow: hidden;*/
-			transform: scale(1) translate(0,0) !important;
 			transition-duration: 0.1s;
 			transition-property: transform;
 			transition-timing-function: cubic-bezier(0.38, 0.94, 0.79, 0.77);
@@ -867,7 +956,7 @@ body.modal-open {
 
 
 	.modal.loaded .modalContainer {
-		overflow-y: scroll;
+		
 	}
 
 		.modal.open.loaded * {
@@ -894,10 +983,9 @@ body.modal-open {
 		right: 0;
 		text-indent: 100%;
 		top: 0;
-		/*transform: translate(-100%);*/
 		white-space: nowrap;
 		width: 45px;
-		z-index: 12;
+		z-index: 30;
 	}
 
 		@media (min-width: 1170px) {

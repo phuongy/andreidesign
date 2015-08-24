@@ -1,27 +1,80 @@
 angular
-	.module('app', [])
+	.module('app', ['ngRoute'])
+	.config(['$routeProvider',
+		function($routeProvider) {
+			$routeProvider.
+				when('/home', {
+				templateUrl: 'views/home.tpl.html'
+			}).
+			when('/project/:slug', {
+				templateUrl: 'views/project-detail.tpl.html'
+			}).
+			otherwise({
+				redirectTo: '/home'
+			});
+	}])
 	.factory('ProjectService', function($rootScope, $http) {
 
 		var ProjectService = {};
 
 		ProjectService.selectedProject = null;
+		ProjectService.selectedIndex = 0;
 		ProjectService.projects = [];
 
-		var url = 'https://dl.dropboxusercontent.com/u/21293595/andrei/js/projects.json';
+		var url = 'js/projects.json';
 
 
 		$http.get(url).success(function(data) {
 	        ProjectService.projects = data;
-	        ProjectService.getMoreProjects();
+	        ProjectService.projectsLoaded();
 	    });
 
 		ProjectService.getProjects = function() {
 			return ProjectService.projects;
 		}
 
+		ProjectService.projectsLoaded = function() {
+			$rootScope.$broadcast('projects-loaded');	
+		}
+
 		ProjectService.setSelectedProject = function(project) {
 			ProjectService.selectedProject = project;
+			ProjectService.setSelectedIndex(project);
 			$rootScope.$broadcast('selected-project-updated');
+		}
+
+		ProjectService.setSelectedProjectBySlug = function(slug) {
+			ProjectService.projects.forEach(function(project) {
+			
+				if(project.slug === slug) {
+					ProjectService.setSelectedProject(project);
+				}
+			});
+		}
+
+		ProjectService.setSelectedIndex = function(project) {
+			for(var i = 0; i < ProjectService.projects.length; i++) {
+				if(ProjectService.projects[i].slug === project.slug) {
+					ProjectService.selectedIndex = i;
+					i = ProjectService.projects.length;
+				}
+			}
+		}
+
+		ProjectService.getNextProject = function() {
+			if(ProjectService.selectedIndex < ProjectService.projects.length-1) {
+				return ProjectService.projects[ProjectService.selectedIndex + 1];
+			} else {
+				return ProjectService.projects[0];
+			}
+		}
+
+		ProjectService.getPreviousProject = function() {
+			if(ProjectService.selectedIndex > 0) {
+				return ProjectService.projects[ProjectService.selectedIndex - 1];
+			} else {
+				return ProjectService.projects[ProjectService.projects.length - 1];
+			}
 		}
 
 		ProjectService.clearSelectedProject = function() {
@@ -191,6 +244,47 @@ angular
 			}
 		}
 	})
+	.directive('lazyLoadImages', function(ProjectService) {
+
+		return  {
+			strict: 'A',
+			link: function(scope, element, attr, ctrl) {
+				var elem =  angular.element(element)[0];
+
+				var waypoint = new Waypoint({
+							 	element: elem,
+							 		handler: function(direction) {
+							 			console.log('triggered');
+							   			ctrl.getMoreImages()
+									},
+								 	offset: 0
+								});
+			},
+			controller: function($scope, ProjectService) {
+				// this.showing = 0;
+				this.total = ProjectService.selectedProject.images.length;
+				// this.increment = this.total;
+				this.images = [];
+
+				this.getMoreImages = function() {
+					this.images = ProjectService.selectedProject.images.slice(0, this.total);
+
+					// if(this.total > this.showing) {
+
+					// 	if(this.total - this.showing > this.increment) {
+					// 		this.showing += this.increment;
+					// 		this.images = ProjectService.selectedProject.images.slice(0, this.showing);
+					// 	} else {
+					// 		this.showing = this.total;
+					// 		this.images = ProjectService.selectedProject.images.slice(0, this.showing);
+					// 	}
+					// }	
+				}
+			},
+			controllerAs: 'imageStore'
+
+		}
+	})
 	.directive('projectTeaser', function() {
 
 		return {
@@ -203,6 +297,7 @@ angular
 				ctrl.title = scope.project.title;
 				ctrl.subtitle = scope.project.subtitle;
 				ctrl.thumb = scope.project.thumb;
+				ctrl.slug = scope.project.slug;
 
 				element.on('click', function() {
 					var elem =  angular.element(element)[0];
@@ -219,17 +314,22 @@ angular
 				});
 
 			},
-			controller: function($scope, ProjectService) {
+			controller: function($scope, ProjectService, $location, $timeout) {
 				this.title = '';
 				this.subtitle = '';
 				this.image = '';
+				this.slug = '';
 
 				this.load = function(event) {
 					ProjectService.setSelectedProject($scope.project);
+					$timeout(function() {
+						// $window.location.href = '#/project/' + $scope.project.slug;
+						$location.path('/project/' + $scope.project.slug);
+					},100);
 				}
 			},
 			controllerAs: 'teaser',
-			template:  '<article class="projectTeaser"> \
+			template:  '<article id="#{{teaser.slug}}" class="projectTeaser"> \
 						 	<header class="projectTeaser_text"> \
 					            <h3 ng-bind="teaser.title"></h3> \
 					            <h5 ng-bind="teaser.subtitle"></h5> \
@@ -242,82 +342,16 @@ angular
 		}
 
 	})
-	.directive('projectDetail', function() {
-
-		return {
-			strict: 'E',
-			replace: true,
-			controller: function($scope, ProjectService) {
-				var self = this;
-
-				this.selectedProject;
-				this.title = '';
-				this.subtitle = '';
-				this.thumb = '';
-				this.challenge = '';
-				this.services = [];
-				this.images = [];
-
-				$scope.$on('selected-project-updated', function() {
-					self.selectedProject = ProjectService.selectedProject;
-
-					if(self.selectedProject != null) {
-						self.title = self.selectedProject.title;
-						self.short_text = self.selectedProject.short_text;
-						self.thumb = self.selectedProject.thumb;
-						self.challenge = self.selectedProject.challenge;
-						self.services = self.selectedProject.services;
-						self.images = self.selectedProject.images;
-					}
-
-				});
-			},
-			controllerAs: 'detail',
-			template: '<div class="projectDetail"> \
-						<header class="projectDetail_header"> \
-							<div class="inner"> \
-								<h1 ng-bind="detail.title"></h1> \
-								<h2 ng-bind="detail.short_text"></h2> \
-							</div> \
-							<div class="projectDetail_thumb" style="background-image: url({{detail.thumb}})"> \
-								<div class="overlay"></div> \
-							</div> \
-						</header> \
-						<article class="projectDetail_content"> \
-							<div class="inner"> \
-								<div class="column"> \
-									<h4>Challenge</h4> \
-									<p ng-bind="detail.challenge"></p> \
-								</div> \
-								<div class="column"> \
-									<h4>Services</h4> \
-									<ul> \
-										<li ng-repeat="service in detail.services" ng-bind="service"></li> \
-									</ul> \
-								</div> \
-							</div> \
-						</article> \
-						<div class="projectDetail_images"> \
-							<div class="inner"> \
-								<img ng-repeat="image in detail.images" ng-src="img/{{image}}" /> \
-							</div> \
-						</div> \
-						<footer class="page_footer"> \
-							<div class="inner"> \
-							    <a href="#modal-top" back-to-top>Back to top</a> \
-						    </div> \
-						</footer> \
-					</div>'
-		}
-
-	})
 	.directive('modal', function() {
 
 		return {
 			strict: 'E',
 			replace: true,
 			transclude: true,
-			controller: function($scope, ProjectService, $timeout) {				
+			link: function(scope, element) {
+
+			},
+			controller: function($scope, ProjectService, $timeout, $location) {				
 				var self = this;
 				this.status = 'hide';
 
@@ -328,8 +362,8 @@ angular
 
 				this.close = function() {
 					ProjectService.clearSelectedProject();
+					$location.path('/home');
 				}
-
 
 				$scope.$on('selected-project-updated', function() {
 
@@ -352,7 +386,7 @@ angular
 
 							}, 300);
 
-						}, 100);
+						}, 1);
 
 					} else {
 
@@ -370,14 +404,64 @@ angular
 			controllerAs: 'modal',
 			template:  '<div id="modal-top" class="modal" ng-class="modal.status"> \
 							<a href ng-click="modal.close()" class="close-button">close</a> \
-							<div class="modalContainer" ng-transclude style="transform: translate({{modal.left}}px, {{modal.top}}px) scale({{modal.scaleX}},{{modal.scaleY}})"></div> \
+							<div class="modalContainer" ng-transclude></div> \
 						</div>'
 		}
 
 	})
-	.controller('MainCtrl', function($scope, ProjectService) {
+	.controller('ProjectDetailCtrl', function($scope, $routeParams, $location, ProjectService) {
 		var self = this;
 
+		this.title = '';
+		this.subtitle = '';
+		this.thumb = '';
+		this.challenge = '';
+		this.services = [];
+		this.images = [];
+		this.next = {};
+		this.previous = {};
+
+		this.updateProjectDetails = function() {
+			if(ProjectService.selectedProject != null) {									
+				self.title = ProjectService.selectedProject.title;
+				self.short_text = ProjectService.selectedProject.short_text;
+				self.thumb = ProjectService.selectedProject.thumb;
+				self.challenge = ProjectService.selectedProject.challenge;
+				self.services = ProjectService.selectedProject.services;
+				self.images = ProjectService.selectedProject.images;
+				self.next = ProjectService.getNextProject();
+				self.previous = ProjectService.getPreviousProject();
+			}
+		}
+
+		this.goToNext = function() {
+			$location.path('/project/'+this.next.slug);
+		};
+
+		this.goToPrevious = function() {
+			$location.path('/project/'+this.previous.slug);
+		};
+
+
+		$scope.$on('projects-loaded', function() {
+			ProjectService.setSelectedProjectBySlug($routeParams.slug);
+		});
+
+		$scope.$on('selected-project-updated', function() {	
+			self.updateProjectDetails();			
+		});
+
+
+		if(ProjectService.projects.length > 0) {
+			ProjectService.setSelectedProjectBySlug($routeParams.slug);
+			this.updateProjectDetails();
+		} 
+
+	})
+	.controller('MainCtrl', function($scope, ProjectService) {
+
+
+		var self = this;
 		this.selectedProject = null;
 		this.projectsShowing = 0;
 		this.updating = false;
@@ -389,7 +473,7 @@ angular
 				this.updating = true;
 
 				var increment = 3;
-
+	
 				if(ProjectService.projects.length > this.projectsShowing) {
 					if((ProjectService.projects.length - this.projectsShowing) > increment) {
 						this.projectsShowing += increment;
@@ -400,22 +484,31 @@ angular
 
 				this.projects = ProjectService.loadProjects(0,this.projectsShowing);
 				this.updating = false;
-
-				$scope.$apply();
 			}
 
-		}
-		
-		this.isProjectSelected = function() {
-			return (self.selectedProject != null);
 		}
 
 		$scope.$on('get-more-projects', function() {
 			self.loadMoreProjects();
 		});
 
-		$scope.$on('selected-project-updated', function() {
-			self.selectedProject = ProjectService.selectedProject;
+		$scope.$on('projects-loaded', function() {
+			self.loadMoreProjects();
 		});
 
+		if(ProjectService.projects.length > 0) {
+			this.loadMoreProjects();
+		}
+
+	})
+	.controller('AppCtrl', function($scope, ProjectService) {
+		var self = this;
+		this.loading = true;
+
+		$scope.$on('projects-loaded', function() {
+			self.loading = false;
+		});
 	});
+
+
+

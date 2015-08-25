@@ -447,6 +447,8 @@ angular
 				self.images = ProjectService.selectedProject.images;
 				self.next = ProjectService.getNextProject();
 				self.previous = ProjectService.getPreviousProject();
+
+				console.log(self.images);
 			}
 		}
 
@@ -488,17 +490,18 @@ angular
 			if(! this.updating) {
 				this.updating = true;
 
-				var increment = 3;
+				//var increment = 3;
 	
-				if(ProjectService.projects.length > this.projectsShowing) {
-					if((ProjectService.projects.length - this.projectsShowing) > increment) {
-						this.projectsShowing += increment;
-					} else {
-						this.projectsShowing = ProjectService.projects.length;
-					}
-				}
+				// if(ProjectService.projects.length > this.projectsShowing) {
+				// 	if((ProjectService.projects.length - this.projectsShowing) > increment) {
+				// 		this.projectsShowing += increment;
+				// 	} else {
+				// 		this.projectsShowing = ProjectService.projects.length;
+				// 	}
+				// }
 
-				this.projects = ProjectService.loadProjects(0,this.projectsShowing);
+				// this.projects = ProjectService.loadProjects(0,this.projectsShowing);
+				this.projects = ProjectService.projects;
 				this.updating = false;
 			}
 

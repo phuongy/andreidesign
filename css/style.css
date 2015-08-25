@@ -240,6 +240,12 @@ ul.inline {
 		display: inline-block;
 	}
 
+
+@keyframes fadeInUp {
+  0%   { opacity: 0; transform: translate(0,20px); }
+  100% { opacity: 1; transform: translate(0,0); }
+}
+
 /* page */
 
 .page_header {
@@ -301,14 +307,14 @@ ul.inline {
 		}
 
 		.first-load .page_header h1 {
-			animation: h1-fade-in 0.4s forwards;
+			animation-name: fadeInUp;
+			animation-direction: forwards;
+			animation-duration: 1s;
+			animation-delay: 0.5s;
+			-webkit-animation-delay: 0.5s;
+		    animation-fill-mode: both;
 			opacity: 0;
-			transform: translate(0,10px);
-		}
-
-		@keyframes h1-fade-in {
-		  0%   { opacity: 0; transform: translate(0,10px); }
-		  100% { opacity: 1; transform: translate(0,0); }
+			transform: translate(0,20px);
 		}
 
 
@@ -334,15 +340,16 @@ ul.inline {
 	}
 
 		.first-load .page_header h2 {
-			animation: h2-fade-in 0.2s 0.5s forwards;
+			animation-name: fadeInUp;
+			animation-direction: forwards;
+			animation-duration: 1s;
+			animation-delay: 1.5s;
+			-webkit-animation-delay: 1.5s;
+			animation-fill-mode: both;
 			opacity: 0;
-			transform: translate(0,5px);
+			transform: translate(0,20px);
 		}
 
-		@keyframes h2-fade-in {
-		  0%   { opacity: 0; transform: translate(0,5px); }
-		  100% { opacity: 1; transform: translate(0,0); }
-		}
 
 
 	.page_header.sticky h2 {
@@ -378,14 +385,14 @@ ul.inline {
 		}
 
 		.first-load .socialLinks {
-			animation: socialLinks-fade-in 0.2s 0.9s forwards;
+			animation-name: fadeInUp;
+			animation-direction: forwards;
+			animation-duration: 1s;
+			animation-delay: 2.5s;
+			-webkit-animation-delay: 2.5s;
+			animation-fill-mode: both;
 			opacity: 0;
-			transform: translate(0,5px);
-		}
-
-		@keyframes socialLinks-fade-in {
-		  0%   { opacity: 0; transform: translate(0,5px); }
-		  100% { opacity: 1; transform: translate(0,0); }
+			transform: translate(0,20px);
 		}
 
 		.socialLinks ul {
@@ -473,14 +480,15 @@ ul.inline {
 }
 
 	.first-load .page_section {
-		animation: pageSection-fade-in 1s 0.9s forwards;
-		opacity: 0;
-		transform: translate(0,15px);
-	}
-
-	@keyframes pageSection-fade-in {
-	  0%   { opacity: 0; transform: translate(0,15px); }
-	  100% { opacity: 1; transform: translate(0,0); }
+		/*animation: pageSection-fade-in 1s 0.9s forwards;*/
+		/*opacity: 0;*/
+		/*transform: translate(0,15px);*/
+		animation-name: fadeInUp;
+		animation-direction: forwards;
+		animation-duration: 1s;
+		animation-delay: 3.5s;
+		-webkit-animation-delay: 3.5s;
+		animation-fill-mode: both;
 	}
 
 	.page_section.projects {

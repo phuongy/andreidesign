@@ -523,7 +523,7 @@ angular
 
 		$timeout(function() {
 			self.firstLoad = false;
-		}, 1500)
+		}, 5000)
 
 		$scope.$on('projects-loaded', function() {
 			self.loading = false;

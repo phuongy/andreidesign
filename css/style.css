@@ -240,6 +240,10 @@ ul.inline {
 		display: inline-block;
 	}
 
+@-o-keyframes  fadeInUp {
+  0%   { opacity: 0; -webkit-transform: translate(0,20px); }
+  100% { opacity: 1; -webkit-transform: translate(0,0); }
+}
 
 @keyframes fadeInUp {
   0%   { opacity: 0; transform: translate(0,20px); }
@@ -280,6 +284,7 @@ ul.inline {
 		position: fixed;
 		top: 0;
 		transform: translate(-50%,0);
+		-webkit-transform: translate(-50%,0);
 		width: 100%;
 		z-index: 9;
 	}
@@ -311,10 +316,15 @@ ul.inline {
 			animation-direction: forwards;
 			animation-duration: 1s;
 			animation-delay: 0.5s;
+			animation-fill-mode: both;
+			-webkit-animation-name: fadeInUp;
+			-webkit-animation-direction: forwards;
+			-webkit-animation-duration: 1s;
 			-webkit-animation-delay: 0.5s;
-		    animation-fill-mode: both;
+		    -webkit-animation-fill-mode: both;
 			opacity: 0;
 			transform: translate(0,20px);
+			-webkit-transform: translate(0,20px);
 		}
 
 
@@ -344,10 +354,15 @@ ul.inline {
 			animation-direction: forwards;
 			animation-duration: 1s;
 			animation-delay: 1.5s;
-			-webkit-animation-delay: 1.5s;
 			animation-fill-mode: both;
+			animation-name: fadeInUp;
+			-webkit-animation-direction: forwards;
+			-webkit-animation-duration: 1s;
+			-webkit-animation-delay: 1.5s;
+			-webkit-animation-fill-mode: both;
 			opacity: 0;
 			transform: translate(0,20px);
+			-webkit-transform: translate(0,20px);
 		}
 
 
@@ -389,10 +404,15 @@ ul.inline {
 			animation-direction: forwards;
 			animation-duration: 1s;
 			animation-delay: 2.5s;
-			-webkit-animation-delay: 2.5s;
 			animation-fill-mode: both;
+			-webkit-animation-name: fadeInUp;
+			-webkit-animation-direction: forwards;
+			-webkit-animation-duration: 1s;
+			-webkit-animation-delay: 2.5s;
+			-webkit-animation-fill-mode: both;
 			opacity: 0;
 			transform: translate(0,20px);
+			-webkit-transform: translate(0,20px);
 		}
 
 		.socialLinks ul {
@@ -601,6 +621,7 @@ ul.inline {
 		position: absolute;
 		left: 30px;
 		transform: translate(0,10px);
+		-webkit-transform: translate(0,10px);
 		transition-duration: 0.5s;
 		z-index: 2;
 	}
@@ -608,6 +629,7 @@ ul.inline {
 		.projectTeaser.active .projectTeaser_text {
 			opacity: 1;
 			transform: translate(0,0);
+			-webkit-transform: translate(0,0);
 		}
 
 		@media (min-width: 600px) {
@@ -640,6 +662,7 @@ ul.inline {
 		top: 0;
 		transition-duration: 0.5s;
 		transform: scale(1);
+		-webkit-transform: scale(1);
 		width: 100%;
 		z-index: 0;
 	}
@@ -647,6 +670,7 @@ ul.inline {
 
 		.projectTeaser:hover  .projectTeaser_image {
 			transform: scale(1.01);
+			-webkit-transform: scale(1.01);
 			/*transition-duration: 0.3s;*/
 
 			filter: grayscale(20%);
@@ -706,6 +730,7 @@ ul.inline {
 			padding: 0 30px;
 			position: absolute;
 			transform: translate(-50%,-50%);
+			-webkit-transform: translate(-50%,-50%);
 			top: 50%;
 			width: 100%;
 			z-index: 20;
@@ -737,7 +762,7 @@ ul.inline {
 
 			@media (min-width: 1366px) {
 				.projectDetail_header h1 {
-					margin-bottom: 30px;
+					margin-bottom: 20px;
 				}
 			}
 
@@ -757,6 +782,7 @@ ul.inline {
 		top: 0;
 		transition-duration: 0.5s;
 		transform: scale(1);
+		-webkit-transform: scale(1);
 		width: 100%;
 		z-index: 0;
 	}
@@ -844,6 +870,9 @@ ul.inline {
 				}
 			}
 
+		.projectDetail_content li {
+			margin-left: 25px;
+		}
 
 	.projectDetail_images {
 		line-height: 0;
@@ -985,6 +1014,7 @@ body.modal-open {
 	transition-delay: 0.5s;
 	transition-property: background transform;
 	transform: scale(0.95) translate(0,-10px);
+	-webkit-transform: scale(0.95) translate(0,-10px);
 	z-index: 10;
 }
 
@@ -994,6 +1024,7 @@ body.modal-open {
 		transition-delay: 0.3s;
 		transition-duration: 0.5s;
 		transform: translate(0, 20px);
+		-webkit-transform: translate(0, 20px);
 	}
 
 	.modal .projectDetail_header .inner,
@@ -1028,11 +1059,13 @@ body.modal-open {
 		opacity: 1;
 		transition-duration: 0.3s;
 		transform: scale(1) translate(0,0) !important;
+		-webkit-transform: scale(1) translate(0,0) !important;
 	}
 
 		.modal.open .projectDetail_content {
 			/*display: block;*/
 			transform: translate(0, 0);
+			-webkit-transform: translate(0, 0);
 		}
 
 		.modal.open .modalContainer {			
@@ -1095,6 +1128,7 @@ body.modal-open {
 				position: fixed;
 				top: 0;
 				transform: translate(-100%);
+				-webkit-transform: translate(-100%);
 				width: 60px;
 			}
 		}

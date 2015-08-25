@@ -694,10 +694,14 @@ ul.inline {
 
 		.projectDetail_header .inner {
 			align-items: center;
+			-webkit-align-items: center;
 			display: flex;
+			display: -webkit-flex; 
 			flex-direction: column;
+			-webkit-flex-direction: column;
 			height: 100%;
 			justify-content: center;
+			-webkit-justify-content: center;
 			left: 50%;
 			padding: 0 30px;
 			position: absolute;
@@ -721,6 +725,7 @@ ul.inline {
 
 		.projectDetail_header h1 {
 			flex: 0 0 auto;
+			-webkit-flex: 0 0 auto;
 			margin-bottom:  10px;
 		}
 
@@ -738,6 +743,7 @@ ul.inline {
 
 		.projectDetail_header h2 {
 			flex: 0 0 auto;
+			-webkit-flex: 0 0 auto;
 		}
 
 	.projectDetail_thumb {
@@ -777,15 +783,20 @@ ul.inline {
 
 		.projectDetail_content .inner {
 			display: flex;
+			display: -webkit-flex; 
 			flex-direction: column;
+			-webkit-flex-direction: column;
 			align-items: flex-start;
+			-webkit-align-items: flex-start;
 			justify-content: left;
+			-webkit-justify-content: left;
 			padding: 0 30px;
 		}
 
 			@media (min-width: 600px) {
 				.projectDetail_content .inner {
 					flex-direction: row;
+					-webkit-flex-direction: row;
 					padding: 0 40px;
 				}
 			}
@@ -814,6 +825,7 @@ ul.inline {
 
 		.projectDetail_content .column {
 			flex: 0 1 100%;
+			-webkit-flex: 0 1 100%;
 		}
 
 		.projectDetail_content .column + .column {
@@ -862,13 +874,16 @@ ul.inline {
 		@media (min-width: 600px) {
 			.modal.open .projectDetail_navigation {
 				display: flex;
+				display: -webkit-flex; 
 				flex-direction: row;
+				-webkit-flex-direction: row;
 				flex-wrap: nowrap;
 			}
 		}
 		
 		.projectNav {
 			flex: 0 0 50%;
+			-webkit-flex: 0 0 50%;
 			height: 300px;
 			position: relative;
 		}
@@ -984,6 +999,7 @@ body.modal-open {
 	.modal .projectDetail_header .inner,
 	.modal .projectDetail_content .inner {
 		display: flex;
+		display: -webkit-flex; 
 	}
 
 	.modalContainer {

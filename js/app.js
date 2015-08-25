@@ -318,7 +318,7 @@ angular
 				new Waypoint({
 							 	element: elem,
 							 		handler: function(direction) {
-							 			console.log('triggered');
+							 			// console.log('triggered');
 							   			// ctrl.getMoreImages()
 							   			// ctrl.active = true;
 							   			element.addClass('active');
@@ -448,7 +448,7 @@ angular
 				self.next = ProjectService.getNextProject();
 				self.previous = ProjectService.getPreviousProject();
 
-				console.log(self.images);
+				// console.log(self.images);
 			}
 		}
 

@@ -20,7 +20,7 @@
             "icollege_03.jpg",
             "icollege_04.jpg",
             "icollege_05.jpg",
-            "icollege_06.jpg",
+            "icollege_06.jpg"
         ]
     },
     {
@@ -46,7 +46,7 @@
             "mathisi_04.jpg",
             "mathisi_05.jpg",
             "mathisi_06.jpg",
-            "mathisi_07.jpg",
+            "mathisi_07.jpg"
         ]
     },
     {
@@ -62,7 +62,7 @@
             "UX",
             "Wireframes",
             "UI Design",
-            "Interactive prototyping",
+            "Interactive prototyping"
         ],
         "images": [
             "student_portal_front_01.jpg",
@@ -70,7 +70,7 @@
             "student_portal_front_03.jpg",
             "student_portal_front_04.jpg",
             "student_portal_front_05.jpg",
-            "student_portal_front_06.jpg",
+            "student_portal_front_06.jpg"
         ]
     },
     {
@@ -87,7 +87,7 @@
             "Wireframes",
             "UI Design",
             "Interactive prototyping",
-            "Testing",
+            "Testing"
         ],
         "images": [
             "bks_01.jpg",
@@ -97,7 +97,7 @@
             "bks_05.jpg",
             "bks_06.jpg",
             "bks_07.jpg",
-            "bks_08.jpg",
+            "bks_08.jpg"
         ]
     },
     {
@@ -113,7 +113,7 @@
             "UX",
             "Wireframes",
             "UI Design",
-            "Interactive prototyping",
+            "Interactive prototyping"
         ],
         "images": [
             "lms_back_01.jpg",
@@ -121,7 +121,7 @@
             "lms_back_03.jpg",
             "lms_back_04.jpg",
             "lms_back_05.jpg",
-            "lms_back_06.jpg",
+            "lms_back_06.jpg"
         ]
     },
     {
@@ -136,7 +136,7 @@
             "UX",
             "Wireframes",
             "Technical documentation",
-            "Prototyping",
+            "Prototyping"
         ],
         "images": [
             "student_portal_spec_01.jpg",
@@ -145,7 +145,7 @@
             "student_portal_spec_04.jpg",
             "student_portal_spec_05.jpg",
             "student_portal_spec_06.jpg",
-            "student_portal_spec_07.jpg",
+            "student_portal_spec_07.jpg"
         ]
     },
     {
@@ -161,7 +161,7 @@
             "UX",
             "Wireframes",
             "UI design",
-            "Prototyping",
+            "Prototyping"
         ],
         "images": [
             "emag_01.jpg",
@@ -171,7 +171,7 @@
             "emag_05.jpg",
             "emag_06.jpg",
             "emag_07.jpg",
-            "emag_08.jpg",
+            "emag_08.jpg"
         ]
     },
     {
@@ -187,7 +187,7 @@
             "UX",
             "Wireframes",
             "UI design",
-            "Prototyping",
+            "Prototyping"
         ],
         "images": [
             "ctv_web_01.jpg",
@@ -197,7 +197,7 @@
             "ctv_web_05.jpg",
             "ctv_web_06.jpg",
             "ctv_web_07.jpg",
-            "ctv_web_08.jpg",
+            "ctv_web_08.jpg"
         ]
     },
     {
@@ -212,7 +212,7 @@
             "Wireframes",
             "App design",
             "Interactive prototyping",
-            "Art direction",
+            "Art direction"
         ],
         "images": [
             "pepsi_app_01.jpg",
@@ -220,7 +220,7 @@
             "pepsi_app_03.jpg",
             "pepsi_app_04.jpg",
             "pepsi_app_05.jpg",
-            "pepsi_app_06.jpg",
+            "pepsi_app_06.jpg"
         ]
     },
     {
@@ -235,7 +235,7 @@
             "Research",
             "Persona",
             "User journey",
-            "Wireframes",
+            "Wireframes"
         ],
         "images": [
             "ctv_ux_01.jpg",
@@ -245,7 +245,7 @@
             "ctv_ux_05.jpg",
             "ctv_ux_06.jpg",
             "ctv_ux_07.jpg",
-            "ctv_ux_08.jpg",
+            "ctv_ux_08.jpg"
         ]
     },
     {
@@ -260,7 +260,7 @@
             "Wireframes",
             "UI Design",
             "Prototyping",
-            "Testing",
+            "Testing"
         ],
         "images": [
             "ctv_app_01.jpg",
@@ -269,7 +269,7 @@
             "ctv_app_04.jpg",
             "ctv_app_05.jpg",
             "ctv_app_06.jpg",
-            "ctv_app_07.jpg",
+            "ctv_app_07.jpg"
         ]
     },
     {
@@ -277,7 +277,7 @@
         "slug": "games-website",
         "subtitle": "ux  |  ui  |  art direction",
         "short_text": "gaming website theme",
-        "thumb": "img/ctv_app_thumb.jpg",
+        "thumb": "img/gameszone_thumb.jpg",
         "challenge": "The website was initially developed for an online gaming retailer. Later the platform was redesigned and turned into a fully responsive Word Press theme.",
         "services": [
             "UX",
@@ -285,7 +285,7 @@
             "UI Design",
             "Prototyping",
             "Art direction",
-            "Technical documentation",
+            "Technical documentation"
         ],
         "images": [
             "gameszone_01.jpg",
@@ -294,7 +294,7 @@
             "gameszone_04.jpg",
             "gameszone_05.jpg",
             "gameszone_06.jpg",
-            "gameszone_07.jpg",
+            "gameszone_07.jpg"
         ]
-    },
-    ]
+    }
+]

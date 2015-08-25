@@ -345,7 +345,7 @@ angular
 				}
 			},
 			controllerAs: 'teaser',
-			template:  '<article id="#{{teaser.slug}}" class="projectTeaser" ng-class="{\'active\':teaser.active}"> \
+			template:  '<article class="projectTeaser" ng-class="{\'active\':teaser.active}"> \
 						 	<header class="projectTeaser_text"> \
 					            <h3 ng-bind="teaser.title"></h3> \
 					            <h5 ng-bind="teaser.subtitle"></h5> \
@@ -524,7 +524,7 @@ angular
 
 		$timeout(function() {
 			self.firstLoad = false;
-		}, 5000)
+		}, 5000);
 
 		$scope.$on('projects-loaded', function() {
 			self.loading = false;

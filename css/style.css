@@ -967,7 +967,7 @@ body.modal-open {
 	position: relative;
 	right: 0;
 	top: 0;
-	transition-delay: 0.2s;
+	transition-delay: 0.5s;
 	transition-property: background transform;
 	transform: scale(0.95) translate(0,-10px);
 	z-index: 10;

@@ -290,7 +290,8 @@ angular
 			strict: 'E',
 			replace: true,
 			scope: {
-				project: '='
+				project: '=',
+				id: '='
 			},
 			link: function(scope, element, attr, ctrl) {
 				var elem =  angular.element(element)[0];

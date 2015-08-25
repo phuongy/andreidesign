@@ -25,7 +25,7 @@
 	</header>
 	<main class="page_section projects" lazy-load-projects ng-controller="MainCtrl as main">
 		<div class="inner">
-			<project-teaser ng-repeat="project in main.projects" data-project="project"></project-teaser>
+			<project-teaser ng-repeat="project in main.projects" data-id="project.slug" data-project="project"></project-teaser>
 	    </div>
 	</main>
 	<footer class="page_footer">

@@ -240,9 +240,9 @@ ul.inline {
 		display: inline-block;
 	}
 
-@-o-keyframes  fadeInUp {
-  0%   { opacity: 0; -webkit-transform: translate(0,20px); }
-  100% { opacity: 1; -webkit-transform: translate(0,0); }
+@-webkit-keyframes fadeInUp {
+  0%   { -webkit-opacity: 0; -webkit-transform: translate(0,20px); opacity: 0; transform: translate(0,20px); }
+  100% { -webkit-opacity: 1; -webkit-transform: translate(0,0); opacity: 1; transform: translate(0,0); }
 }
 
 @keyframes fadeInUp {
@@ -277,7 +277,7 @@ ul.inline {
 		transition-property: background;
 	}
 
-	.page_header.sticky .inner {
+	/*.page_header.sticky .inner {
 		background: rgba(0,0,0,0.65);
 		height: 50px;
 		left: 50%;
@@ -287,7 +287,7 @@ ul.inline {
 		-webkit-transform: translate(-50%,0);
 		width: 100%;
 		z-index: 9;
-	}
+	}*/
 
 		@media (min-width: 600px) {
 			.page_header.sticky .inner {
@@ -328,22 +328,22 @@ ul.inline {
 		}
 
 
-	.page_header.sticky h1 {
+	/*.page_header.sticky h1 {
 		font-size: 16px;
 		left: 30px;
 		letter-spacing: -0.5px;
 		line-height: 50px;
 		position: fixed;
 		top: 0;
-	}
+	}*/
 
-		@media (min-width: 600px) {
+		/*@media (min-width: 600px) {
 			.page_header.sticky h1 {
 				font-size: 20px;
 				left: 40px;
 				line-height: 60px;
 			}
-		}
+		}*/
 
 	.page_header h2 {
 
@@ -355,7 +355,7 @@ ul.inline {
 			animation-duration: 1s;
 			animation-delay: 1.5s;
 			animation-fill-mode: both;
-			animation-name: fadeInUp;
+			-webkit-animation-name: fadeInUp;
 			-webkit-animation-direction: forwards;
 			-webkit-animation-duration: 1s;
 			-webkit-animation-delay: 1.5s;
@@ -367,7 +367,7 @@ ul.inline {
 
 
 
-	.page_header.sticky h2 {
+	/*.page_header.sticky h2 {
 		font-size: 16px;
 		line-height: 50px;
 		position: fixed;
@@ -381,7 +381,7 @@ ul.inline {
 				line-height: 60px;
 				right: 40px;
 			}
-		}
+		}*/
 
 	.socialLinks {
 		margin-top: 40px;
@@ -507,8 +507,12 @@ ul.inline {
 		animation-direction: forwards;
 		animation-duration: 1s;
 		animation-delay: 3.5s;
-		-webkit-animation-delay: 3.5s;
 		animation-fill-mode: both;
+		-webkit-animation-name: fadeInUp;
+		-webkit-animation-direction: forwards;
+		-webkit-animation-duration: 1s;
+		-webkit-animation-delay: 3.5s;
+		-webkit-animation-fill-mode: both;
 	}
 
 	.page_section.projects {
@@ -617,16 +621,22 @@ ul.inline {
 
 	.projectTeaser_text {
 		bottom: 30px;
-		opacity: 0;
 		position: absolute;
 		left: 30px;
-		transform: translate(0,10px);
-		-webkit-transform: translate(0,10px);
-		transition-duration: 0.5s;
+		/*transform: translate(0,10px);*/
+		/*-webkit-transform: translate(0,10px);*/
+		/*transition-duration: 0.5s;*/
 		z-index: 2;
 	}
 
-		.projectTeaser.active .projectTeaser_text {
+	.first-load .projectTeaser_text {
+		opacity: 0;
+		transform: translate(0,10px);
+		-webkit-transform: translate(0,10px);
+		transition-duration: 0.5s;
+	}
+
+		.first-load .projectTeaser.active .projectTeaser_text {
 			opacity: 1;
 			transform: translate(0,0);
 			-webkit-transform: translate(0,0);
@@ -677,11 +687,18 @@ ul.inline {
 		}
 
 		.projectTeaser_thumb .overlay {
+			/*opacity: 1;*/
+
+			/*transition-duration: 1s;*/
+		}
+
+		.first-load .projectTeaser_thumb .overlay {
 			opacity: 0;
 			transition-duration: 1s;
 		}
 
-		.projectTeaser.active .projectTeaser_thumb .overlay {
+
+		.first-load .projectTeaser.active .projectTeaser_thumb .overlay {
 			opacity: 1;
 		}
 
@@ -1013,8 +1030,8 @@ body.modal-open {
 	top: 0;
 	transition-delay: 0.5s;
 	transition-property: background transform;
-	transform: scale(0.95) translate(0,-10px);
-	-webkit-transform: scale(0.95) translate(0,-10px);
+	/*transform: scale(0.95) translate(0,-10px);*/
+	/*-webkit-transform: scale(0.95) translate(0,-10px);*/
 	z-index: 10;
 }
 
@@ -1058,8 +1075,8 @@ body.modal-open {
 	.modal.open {
 		opacity: 1;
 		transition-duration: 0.3s;
-		transform: scale(1) translate(0,0) !important;
-		-webkit-transform: scale(1) translate(0,0) !important;
+		/*transform: scale(1) translate(0,0) !important;*/
+		/*-webkit-transform: scale(1) translate(0,0) !important;*/
 	}
 
 		.modal.open .projectDetail_content {

@@ -13,6 +13,20 @@ angular
 				redirectTo: '/home'
 			});
 	}])
+	.factory('PageService', function($rootScope) {
+
+		var PageService = {}
+
+		// PageService.loaded = false;
+
+		PageService.setLoaded = function() {
+			// PageService.loaded = truel
+			$rootScope.$broadcast('page-loaded');
+		}
+
+		return PageService;
+
+	})
 	.factory('ProjectService', function($rootScope, $http) {
 
 		var ProjectService = {};
@@ -425,7 +439,7 @@ angular
 		}
 
 	})
-	.controller('ProjectDetailCtrl', function($scope, $routeParams, $location, ProjectService) {
+	.controller('ProjectDetailCtrl', function($scope, $routeParams, $location, ProjectService, PageService, $anchorScroll) {
 		var self = this;
 
 		this.title = '';
@@ -475,6 +489,8 @@ angular
 			this.updateProjectDetails();
 		} 
 
+		PageService.setLoaded();
+		$anchorScroll();
 	})
 	.controller('MainCtrl', function($scope, ProjectService) {
 
@@ -525,9 +541,15 @@ angular
 		this.firstLoad = true;
 		this.loading = true;
 
-		$timeout(function() {
+		// $timeout(function() {
+		// 	self.firstLoad = false;
+		// }, 5000);
+
+		$scope.$on('page-loaded', function() {
+			// self.loading = false;
+
 			self.firstLoad = false;
-		}, 5000);
+		});
 
 		$scope.$on('projects-loaded', function() {
 			self.loading = false;
